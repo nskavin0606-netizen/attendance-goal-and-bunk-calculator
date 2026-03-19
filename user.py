@@ -1,4 +1,5 @@
 import streamlit as st
+import math as m
 st.set_page_config(page_title="attendance goal",page_icon="🎯")
 st.markdown("<h1 style='text-align: center; color: #007bff;'>ATTENDANCE GOAL CALCULATOR  AND BUNKER APP</h1>", unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center; color: #007bff;'>calculate your attendance goal and plan your bunking strategy</h5>", unsafe_allow_html=True)
@@ -28,11 +29,12 @@ if st.button("submit", type="primary",width="stretch"):
     elif st.session_state["goal"]=="75%":
         goal=0.75
     required_a=(goal*st.session_state["complete"]-st.session_state['attended'])/(1-goal)
-    if goal>c_percentage:
-        st.markdown(f"<h5 style='text-align: center; color: #28a745;'>your attendance is already above your goal</h5>", unsafe_allow_html=True)
+    if goal*100>c_percentage:
+        st.markdown(f"<h5 style='text-align: center; color: #28a745;'>your attendance is already below your goal</h5>", unsafe_allow_html=True)
         st.markdown(f"<h6 style='text-align: center; color: #28a745;'> your have attended {st.session_state['attended']} hours/{st.session_state['complete']} hours</h6>", unsafe_allow_html=True)
         st.markdown(f"<h6 style='text-align: center; color: red;'>your current attendance is {c_percentage:.2f}%</h6>", unsafe_allow_html=True)
-        st.markdown(f"<h6 style='text-align: center; color: #28a745;'>you need to attend {required_a:.2f} hours</h6>", unsafe_allow_html=True)
-    elif goal<=c_percentage:
+        st.markdown(f"<h6 style='text-align: center; color: #28a745;'>you need to attend {m.ceil(required_a)} hours</h6>", unsafe_allow_html=True)
+    elif goal*100<c_percentage:
+        st.markdown(f"<h6 style='text-align: center; color: red;'>your current attendance is {c_percentage:.2f}%</h6>", unsafe_allow_html=True)
         st.markdown(f"<h5 style='text-align: center; color: #28a745;'>your attendance is already above your goal</h5>", unsafe_allow_html=True)
-        st.markdown(f"<h6 style='text-align: center; color: #28a745;'> you can bunk {st.session_state['attended']/goal - st.session_state['attended']} hours/{st.session_state['total_hours']} hours</h6>", unsafe_allow_html=True)
+        st.markdown(f"<h6 style='text-align: center; color: #28a745;'> you can bunk {m.floor(st.session_state['attended']/goal - st.session_state['attended'])} hours/{st.session_state['total_hours']} hours to maintain your goal</h6>", unsafe_allow_html=True)
