@@ -1,8 +1,8 @@
 import streamlit as st
 import math as m
 st.set_page_config(page_title="attendance goal",page_icon="🎯")
-st.markdown("<h1 style='text-align: center; color: #007bff;'>ATTENDANCE GOAL CALCULATOR  AND BUNKER APP</h1>", unsafe_allow_html=True)
-st.markdown("<h5 style='text-align: center; color: #007bff;'>calculate your attendance goal and plan your bunking strategy</h5>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center; color: #007bff;'>ATTENDANCE GOAL CALCULATOR  AND BUNKER APP</h5>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: center; color: #007bff;'>calculate your attendance goal and plan your bunking strategy</h6>", unsafe_allow_html=True)
 if "complete" not in st.session_state:
     st.session_state['complete']=0
 if "attended" not in st.session_state:
