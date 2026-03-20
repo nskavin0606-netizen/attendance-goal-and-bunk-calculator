@@ -31,7 +31,6 @@ if st.button("submit", type="primary",width="stretch"):
     required_a=(goal*st.session_state["complete"]-st.session_state['attended'])/(1-goal)
     if goal*100>c_percentage:
         st.markdown(f"<h5 style='text-align: center; color: #28a745;'>your attendance is below your goal</h5>", unsafe_allow_html=True)
-        st.markdown(f"<h6 style='text-align: center; color: #28a745;'> your have attended {st.session_state['attended']} hours/{st.session_state['complete']} hours</h6>", unsafe_allow_html=True)
         st.markdown(f"<h6 style='text-align: center; color: red;'>your current attendance is {c_percentage:.2f}%</h6>", unsafe_allow_html=True)
         st.markdown(f"<h6 style='text-align: center; color: #28a745;'>you need to attend {m.ceil(required_a)} hours</h6>", unsafe_allow_html=True)
     elif goal*100<c_percentage:
